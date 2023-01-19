@@ -1,0 +1,32 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Наименование</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Изображение (превью)</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col">Дата последнего изменения</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in product_list %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.description|truncatechars:100 }}</td>
+                <td>{{ product.image }}</td>\
+                <td>{{ product.category }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.creation_date }}</td>
+                <td>{{ product.date_of_update }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
