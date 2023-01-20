@@ -7,15 +7,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         products = [
-            {'product_name': 'rambutan', 'description': 'hairy red', 'image': '', 'category': '1', 'price': '2000',
+            {'product_name': 'rambutan', 'description': 'hairy red', 'image': 'rambutan.jpg', 'category': '1', 'price': '2000',
              'creation_date': datetime.date.today(), 'date_of_update': datetime.date.today()},
-            {'product_name': 'peaches', 'description': 'hairy orange', 'image': '', 'category': '1',
+            {'product_name': 'peaches', 'description': 'hairy orange', 'image': 'peaches.jpg', 'category': '1',
              'price': '300',
              'creation_date': datetime.date.today(), 'date_of_update': datetime.date.today()},
-            {'product_name': 'cucumbers', 'description': 'long green', 'image': '', 'category': '2',
+            {'product_name': 'cucumbers', 'description': 'long green', 'image': 'cucumbers.jpg', 'category': '2',
              'price': '180',
              'creation_date': datetime.date.today(), 'date_of_update': datetime.date.today()},
-            {'product_name': 'tomatoes', 'description': 'round red', 'image': '', 'category': '2',
+            {'product_name': 'tomatoes', 'description': 'round red', 'image': 'tomatoes.jpg', 'category': '2',
              'price': '260',
              'creation_date': datetime.date.today(), 'date_of_update': datetime.date.today()}
         ]

@@ -15,3 +15,10 @@ def products(request):
         'product_list': Product.objects.all()
     }
     return render(request, 'catalog/products.html', context)
+
+
+def pictures(request):
+    context = {
+        'pictures_list': Product.objects.all()
+    }
+    return render(request, 'catalog/pictures.html', context)
