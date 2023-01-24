@@ -25,7 +25,9 @@
                 <td>{{ object.head }}</td>
                 <td>{{ object.slug }}</td>
                 <td>{{ object.content }}</td>
-                <td>{{ object.image }}</td>
+                <td>
+                    <img src="/media/{{ object.image }}" alt="" border=3 height=100 width=150></img>
+                </td>
                 <td>{{ object.creation_date }}</td>
                 <td>{{ object.get_sign_of_publication_display }}
                     {% if object.sign_of_publication == 'active' %}

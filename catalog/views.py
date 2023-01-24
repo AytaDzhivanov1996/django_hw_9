@@ -53,7 +53,7 @@ class BlogDeleteView(DeleteView):
 class BlogDetailView(DetailView):
     model = Blog
 
-    def views_counter(self, request, pk):
+    def get(self, request, pk):
         blog_item = get_object_or_404(Blog, pk=pk)
         blog_item.views_number += 1
         blog_item.save()
