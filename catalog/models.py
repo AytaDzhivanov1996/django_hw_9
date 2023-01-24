@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -27,3 +28,29 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+
+class Blog(models.Model):
+    STATUS_ACTIVE = 'active'
+    STATUS_INACTIVE = 'inactive'
+    STATUSES = (
+        ('active', 'Опубликованный'),
+        ('inactive', 'Не опубликованный'),
+    )
+
+    head = models.CharField(max_length=150, verbose_name='Заголовок')
+    slug = models.CharField(max_length=250, verbose_name='Slug')
+    content = models.TextField(verbose_name='Содержимое')
+    image = models.ImageField(upload_to='media/', verbose_name='Изображение(превью)', **NULLABLE)
+    creation_date = models.DateTimeField(verbose_name='Дата создания')
+    sign_of_publication = models.CharField(choices=STATUSES, default=STATUS_ACTIVE, max_length=250, verbose_name='Признак публикации')
+    views_number = models.IntegerField(default=0, verbose_name='Количество просмотров')
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.head)
+        super(Blog, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = 'Блог'
+        verbose_name_plural = 'Блоги'
+

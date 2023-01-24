@@ -3,9 +3,9 @@
 {% block content %}
  <div class="container">
   <div class="card">
-    {% for picture in pictures_list %}
+    {% for object in object_list %}
     <div class="photo">
-        <img src="{% mediapath picture.image %}" alt="" border=5 height=200 width=300>
+        <img src="{% mediapath object.image %}" alt="" border=5 height=200 width=300>
     </div>
   </div>
  </div>
