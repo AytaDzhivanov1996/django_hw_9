@@ -54,3 +54,16 @@ class Blog(models.Model):
         verbose_name = 'Блог'
         verbose_name_plural = 'Блоги'
 
+
+class Version(models.Model):
+    STATUS_ACTIVE = 'active'
+    STATUS_INACTIVE = 'inactive'
+    STATUSES = (
+        ('active', 'активная'),
+        ('inactive', 'неактивная')
+    )
+    product = models.ForeignKey(Product, verbose_name='Продукт', on_delete=models.CASCADE)
+    number = models.FloatField(default=1, verbose_name='Номер версии')
+    name = models.CharField(max_length=250, verbose_name='Название версии')
+    status = models.CharField(choices=STATUSES, default=STATUS_INACTIVE, max_length=50, verbose_name='Признак текущей версии')
+

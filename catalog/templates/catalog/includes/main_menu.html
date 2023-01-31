@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">У Айты</a>
+    <a class="navbar-brand" href="{% url 'catalog:product' %}">У Айты</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,12 +8,12 @@
         <nav class="ms-5">
             <a class="p-2 btn btn-outline-primary" href="/products/pictures/">Изображения</a>
         </nav>
-        <nav class="ms-5">
-            <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:blog' %}">Блог</a>
-        </nav>
-        <nav class="ms-5">
-            <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:create' %}">Создать</a>
-        </nav>
+{#        <nav class="ms-5">#}
+{#            <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:blog' %}">Блог</a>#}
+{#        </nav>#}
+{#        <nav class="ms-5">#}
+{#            <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:create' %}">Создать</a>#}
+{#        </nav>#}
     </div>
   </div>
 </nav>
