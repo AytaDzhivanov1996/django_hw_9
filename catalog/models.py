@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 
+from users.models import User
+
 NULLABLE = {'blank': True, 'null': True}
 
 
@@ -12,6 +14,7 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='Цена за покупку')
     creation_date = models.DateTimeField(verbose_name='Дата создания')
     date_of_update = models.DateTimeField(verbose_name='Дата последнего изменения')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'Продукт'
