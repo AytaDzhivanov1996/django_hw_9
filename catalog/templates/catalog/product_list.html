@@ -1,5 +1,5 @@
 {% extends 'catalog/base.html' %}
-
+{% load mediapath from template_filters %}
 {% block content %}
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-primery border-bottom box-shadow">
     <h5 class="my-0 mr-md-auto font-weight-normal">Магазин</h5>
@@ -31,7 +31,7 @@
                 </td>
                 <td>{{ object.product_name }}</td>
                 <td>{{ object.description|truncatechars:100 }}</td>
-                <td>{{ object.image }}</td>
+                <td><img src="{% mediapath object.image %}" alt="" border=5 height=200 width=300></td>
                 <td>{{ object.category }}</td>
                 <td>{{ object.price }}</td>
                 <td>{{ object.creation_date }}</td>

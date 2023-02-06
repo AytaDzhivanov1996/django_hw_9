@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db import transaction
 from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
@@ -38,17 +38,25 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.user = self.request.user
+        self.object.user_create = self.request.user
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:product')
     raise_exception = True
     permission_denied_message = "Access is restricted to authenticated users"
+
+    def get_queryset(self):
+        return Product.objects.filter(user_create=self.request.user)
+
+    def test_func(self):
+        product = self.get_object()
+        return product.user_create == self.request.user or self.request.user.has_perms(
+            perm_list=['set_sign_of_publication', 'change_description_product', 'change_category_product'])
 
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):

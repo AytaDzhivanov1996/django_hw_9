@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 
+from config import settings
 from users.models import User
 
 NULLABLE = {'blank': True, 'null': True}
@@ -14,11 +15,18 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='Цена за покупку')
     creation_date = models.DateTimeField(verbose_name='Дата создания')
     date_of_update = models.DateTimeField(verbose_name='Дата последнего изменения')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    sign_of_publication = models.BooleanField(default=False, verbose_name='признак публикации')
 
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+        permissions = [
+            ('set_sign_of_publication', 'Can cancel product publication'),
+            ('change_description_product', 'Can change product description'),
+            ('change_category_product', 'Can change product category')
+
+        ]
 
 
 class Category(models.Model):
