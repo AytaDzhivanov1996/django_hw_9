@@ -8,6 +8,7 @@ from django.urls import reverse_lazy, reverse
 
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Blog, Version
+from catalog.services import cache_category
 
 
 def home(request):
@@ -27,6 +28,11 @@ def pictures(request):
 
 class ProductListView(ListView):
     model = Product
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['category'] = cache_category(self)
+        return context_data
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
